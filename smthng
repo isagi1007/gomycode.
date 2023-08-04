@@ -1,0 +1,83 @@
+#Question 1:
+
+class Point3D:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+    
+    def xyz(self):
+        return (self.x, self.y, self.z)
+
+my_point = Point3D(1, 2, 3)
+print(my_point.xyz())
+
+
+#Question 2
+class Rectangle:
+    def __init__(self, length, width):
+        self.l = length
+        self.w = width
+    
+    def area(self):
+        return self.l * self.w
+    def perimeter (self):
+        return 2*(self.l + self.w)
+
+my_rectangle= Rectangle (4,3)
+print ("Area : ", my_rectangle.area())
+print ("Perimeter : ", my_rectangle.perimeter())
+
+
+#Question 3
+
+import math
+class Circle:
+    
+    def __init__(self, center_x, center_y, radius):
+        self.Ox = center_x
+        self.Oy = center_y
+        self.r = radius
+    
+    def perimeter (self):
+        return 2* math.pi * self.r
+    
+    def area (self):
+        return math.pi * (self.r ** 2)
+    
+    def Inside(self, point_x, point_y):
+        distance = math.sqrt((point_x - self.Ox) ** 2 + (point_y - self.Oy) ** 2)
+        return distance <= self.r
+    
+circle1 = Circle(0, 0, 5)
+print("Area:", circle1.area())         
+print("Perimeter:", circle1.perimeter())
+print(circle1.Inside(6, 7))  
+print(circle1.Inside(2, 2))
+
+#Question 4
+
+class Bank:
+    def __init__(self, balance=0):
+        self.balance = balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            return True
+        else:
+            return False
+    
+    def withdraw(self, amount):
+        if amount > 0 and self.balance >= amount:
+            self.balance -= amount
+            return True
+        else:
+            return False
+
+account = Bank(1000)
+
+account.deposit(500)
+account.withdraw(200)
+
+print("Current Balance:", account.balance)
