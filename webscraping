@@ -1,0 +1,66 @@
+import requests
+from bs4 import BeautifulSoup
+
+def get_html_content(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.content
+    else:
+        return None
+
+def extract_article_title(soup):
+    title = soup.find("h1", {"class": "firstHeading"}).text
+    return title
+
+def extract_article_text(soup):
+    article_text = {}
+    current_heading = None
+
+    for element in soup.find_all(["h2", "p"]):
+        if element.name == "h2":
+            current_heading = element.text
+            article_text[current_heading] = []
+        elif current_heading:
+            article_text[current_heading].append(element.text)
+
+    return article_text
+
+def extract_redirect_links(soup):
+    redirect_links = []
+    for link in soup.find_all("a", href=True):
+        href = link["href"]
+        if href.startswith("/wiki/") and not href.startswith("/wiki/File:") and not href.startswith("/wiki/Template:"):
+            redirect_links.append(href)
+    return redirect_links
+
+def scrape_wikipedia_page(url):
+    html_content = get_html_content(url)
+    if html_content:
+        soup = BeautifulSoup(html_content, "html.parser")
+        title = extract_article_title(soup)
+        article_text = extract_article_text(soup)
+        redirect_links = extract_redirect_links(soup)
+
+        result = {
+            "title": title,
+            "article_text": article_text,
+            "redirect_links": redirect_links
+        }
+
+        return result
+    else:
+        return None
+
+
+def scrape_wikipedia(link):
+    return scrape_wikipedia_page(link)
+
+
+wikipedia_link = "https://en.wikipedia.org/wiki/Python_(programming_language)"
+result = scrape_wikipedia(wikipedia_link)
+if result:
+    print("Title:", result["title"])
+    print("Article Text:", result["article_text"])
+    print("Redirect Links:", result["redirect_links"])
+else:
+    print("Error scraping Wikipedia page.")
