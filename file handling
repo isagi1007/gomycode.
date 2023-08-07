@@ -1,0 +1,27 @@
+#Task 1
+f = open("tyami.txt",'r',encoding = 'utf-8')
+print(f.read())
+
+#Task 2
+m=int(input("Write the number of lines : "))
+f= open("tyami.txt",'r',encoding = 'utf-8')
+for _ in range(m):
+        line = f.readline()
+        print(line)
+
+
+#Task 3
+n=int(input("Write the number of lines : "))
+f = open("tyami.txt",'r',encoding = 'utf-8')
+lines = f.readlines()
+print(lines[-n:])
+
+
+#Task 4
+
+
+#Task 5 (Bonus)
+n=int(input("Write the number of lines : "))
+f = open("tyami.txt",'r',encoding = 'utf-8')
+lines = f.readlines()
+print(lines[-n:])
