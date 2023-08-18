@@ -1,0 +1,57 @@
+mylist=[14, "hello", 967]
+#mylist[6] 6 is out of range so it is an error
+mylist[2] #2 is the index of 967
+
+'''import Pandas
+import NumPy''' # Pandas and NumPy don't exist as modules
+import pandas 
+import numpy
+
+
+#Print"python errors" that does not exist , it is a syntax error
+print("python errors")
+
+
+mydictionnary={True:"hello",False:"bye", '3':"python"}
+#mydictionnary['True'] True must not be between ''
+mydictionnary[True]
+
+
+'''i=14
+while i<78:
+print(i)
+i+=1''' #indentation error, print et i+=1 doit etre à l'intérieur de la boucle while
+i=14
+while i<78:
+    print(i)
+    i+=1
+
+
+
+it=iter([1,2,3])
+'''next(it)
+next(it)
+next(it)
+next(it)''' #StopIteration Error because there are only 3 element in the list
+
+next(it)
+next(it)
+next(it)
+
+
+
+#'15'+15             '15' is a string and 15 an int
+15+15
+
+#int('python')  Value Error because python is not an int, it is a string
+int(5)      
+
+
+
+#python   NameError because python is not defined
+python = 5
+
+
+
+#x=19/0 ZeroDivision Error because a number cannot be divised by 0
+x=19/19
