@@ -1,0 +1,101 @@
+from tkinter import *
+import numpy as n
+
+def computers_choice():
+    a = ['rock', 'paper', 'scissors']
+    computer = a[n.random.randint(0, 3)]
+    c = computer
+    return c
+
+
+w= Tk ()
+w.title( "Rock, Paper, Scissors")
+w.geometry ('1000x1000')
+
+f= Frame (w)
+f.pack()
+
+lf = LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 50, pady = 50)
+lf.pack()
+
+l = Label (lf, text = 'Player', bg = 'blue', fg = 'red', font = ('Algerian', 25) )
+l.grid(row = 0, column = 2)
+
+
+players_choice = Label (lf, bg = '#2C3895')
+players_choice.grid(row = 1, column = 2)
+
+def r():
+    player_choice = 'rock'
+    lf1= LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 90, pady = 100)
+    lf1.pack()
+    l1 = Label (lf1,bg='blue', fg = 'red', text = 'Computer', font = ('Algerian', 25))
+    l1.grid(row = 1, column = 2)
+    
+    lf2= LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 90, pady = 100)
+    lf2.pack()
+    l2 = Label (lf2,bg='blue', fg = 'red', text = 'Result', font = ('Algerian', 25))
+    l2.grid(row = 1, column = 2)
+
+    computer_choice = computers_choice()
+    l1.config(text = f'The Computer chose: \n {computer_choice}')
+    if player_choice == computer_choice:
+        l2.config(text = 'Tie')
+    elif computer_choice == 'paper':
+        l2.config(text = 'You lost, Try again.')
+    else:
+        l2.config(text = 'You won! Congrats!')
+
+def a():
+    player_choice = 'paper'
+    lf1= LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 90, pady = 100)
+    lf1.pack()
+    l1 = Label (lf1,bg='blue', fg = 'red', text = 'Computer', font = ('Algerian', 25))
+    l1.grid(row = 1, column = 2)
+
+    lf2= LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 90, pady = 100)
+    lf2.pack()
+    l2 = Label (lf2,bg='blue', fg = 'red', text = 'Result', font = ('Algerian', 25))
+    l2.grid(row = 1, column = 2)
+
+    computer_choice = computers_choice()
+    l1.config(text = f'The Computer chose: \n {computer_choice}')
+    if player_choice == computer_choice:
+        l2.config(text = 'Tie')
+    elif computer_choice == 'scissors':
+        l2.config(text = 'You lost, Try again.')
+    else:
+        l2.config(text = 'You won! Congrats!')
+
+def b():
+    player_choice = 'scissors'
+    lf1= LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 90, pady = 100)
+    lf1.pack()
+    l1 = Label (lf1,bg='blue', fg = 'red', text = 'Computer', font = ('Algerian', 25))
+    l1.grid(row = 1, column = 2)
+    computer_choice = computers_choice()
+    l1.config(text = f'The Computer chose: \n {computer_choice}')
+
+    lf2= LabelFrame (f, height = 100, width = 100, bg = '#2C3895', padx = 90, pady = 100)
+    lf2.pack()
+    l2 = Label (lf2,bg='blue', fg = 'red', text = 'Result', font = ('Algerian', 25))
+    l2.grid(row = 1, column = 2)
+
+    if player_choice == computer_choice:
+        l2.config(text = 'Tie')
+    elif computer_choice == 'rock':
+        l2.config(text = 'You lost, Try again.')
+    else:
+        l2.config(text = 'You won! Congrats!')
+
+
+b1 = Button (lf, text = 'rock', width= 20,bg='black',fg='#FFA701',activeforeground='black',activebackground='#FFA701', command = r)
+b1.grid(row = 2 , column = 3)
+
+b2 = Button (lf, text = 'paper', width= 20,bg='black',fg='#FFA701',activeforeground='black',activebackground='#FFA701', command = a)
+b2.grid(row = 2, column = 2)
+
+b3 = Button (lf, text = 'scissors', width= 20,bg='black',fg='#FFA701',activeforeground='black',activebackground='#FFA701', command = b)
+b3.grid(row = 2, column = 1)
+
+w.mainloop()
